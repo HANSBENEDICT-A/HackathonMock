@@ -26,6 +26,7 @@ public class EmployeePage {
     private final By employeeNameResult = By.xpath("//div[@role='rowgroup']");
     private final By employeeRow = By.xpath("(//div[@class='oxd-table-card'])[1]");
     private final By personalDetailsName = By.name("firstName");
+    private final By noRecordsFound = By.xpath("//span[text()='No Records Found']");
 
 
     public void openPIM() {
@@ -87,5 +88,8 @@ public class EmployeePage {
     public String getEmployeeName() {
 
         return wait.until(ExpectedConditions.visibilityOfElementLocated(personalDetailsName)).getAttribute("value");
+    }
+    public boolean isNoRecordsFoundDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(noRecordsFound)).isDisplayed();
     }
 }

@@ -47,4 +47,14 @@ public class EmployeeTest extends BaseTest {
                 employeePage.isEmployeeAdded()
         );
     }
+    @Test
+    public void invalidEmployeeSearchTest()
+    {
+        LoginPage loginPage = new LoginPage(driver, wait);
+        EmployeePage employeePage = new EmployeePage(driver, wait);
+        loginPage.NavigatePage();
+        loginPage.Login("Admin", "admin123");
+        employeePage.searchEmployee("Sudhagar");
+        Assert.assertTrue(employeePage.isNoRecordsFoundDisplayed());
+    }
 }

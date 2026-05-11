@@ -20,6 +20,10 @@ public class EmployeePage {
     private final By employeeId = By.xpath("//input[contains(@class,'oxd-input oxd-input--active')]");
     private final By submitButton = By.cssSelector("button[type='submit']");
     private final By personalDetails = By.xpath("//h6[text()='Personal Details']");
+    private final By employeeList = By.xpath("//a[text()='Employee List']");
+    private final By employeeSearchBox = By.xpath("//input[contains(@placeholder,'Type for hints...')]");
+    private final By searchButton = By.cssSelector("button[type='submit']");
+    private final By employeeNameResult = By.xpath("//div[@role='rowgroup']");
 
 
     public void openPIM() {
@@ -54,4 +58,25 @@ public class EmployeePage {
         enterEmployeeId(empId);
         clickSaveButton();
     }
+    public boolean isEmployeeAdded() {
+
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(personalDetails)).isDisplayed();
+    }
+
+    public void openEmployeeList() {
+
+        wait.until(ExpectedConditions.elementToBeClickable(employeeList)).click();
+    }
+
+    public void searchEmployee(String employeeName)
+    {
+        openPIM();
+        openEmployeeList();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(employeeSearchBox)).sendKeys(employeeName);
+        wait.until(ExpectedConditions.elementToBeClickable(searchButton)).click();
+    }
+    public boolean isEmployeeFound() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(employeeNameResult)).isDisplayed();
+    }
+    
 }

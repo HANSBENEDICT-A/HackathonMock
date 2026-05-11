@@ -13,6 +13,9 @@ import java.io.IOException;
 
 public class LoginTest extends BaseTest {
 
+    ConfigReader config =
+            new ConfigReader();
+
     @DataProvider
     public Object[][] loginData() throws IOException, CsvException {
         CSVReader csvReader = new CSVReader(new FileReader("src/test/Details/details"));
@@ -22,7 +25,7 @@ public class LoginTest extends BaseTest {
     @Test(dataProvider = "loginData")
     public void LoginTestuser(String username, String password) {
         LoginPage loginPage = new LoginPage(driver, wait);
-        loginPage.NavigatePage();
+        driver.get(config.getUrl());
         loginPage.Login(username, password);
 
         if (password.equals("admin123")) {

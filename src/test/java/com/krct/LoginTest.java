@@ -3,6 +3,7 @@ package com.krct;
 import com.krct.pages.LoginPage;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -19,11 +20,36 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "loginData")
-    public void LoginTest(String username, String password)
-    {
-        LoginPage loginPage = new LoginPage(driver,wait);
+
+    public void LoginTestuser(String username, String password) {
+        LoginPage loginPage = new LoginPage(driver, wait);
         loginPage.NavigatePage();
-        loginPage.Login(username,password);
-        
+        loginPage.Login(username, password);
+
+        if (password.equals("admin123")) {
+            Assert.assertTrue(
+                    loginPage.isUserLoggedIn());
+        } else {
+            Assert.assertEquals(loginPage.isErrorMessageDisplayed(), "Invalid credentials");
+        }
+    }
+    @Test
+    public void logoutTest()
+    {
+        LoginPage loginPage = new LoginPage(driver, wait);
+        loginPage.NavigatePage();
+        loginPage.Login("Admin", "admin123");
+        loginPage.logoutButtonClick();
+        Assert.assertTrue(loginPage.isLoginPageDisplayed());
+    }
+
+    @Test
+    public void loginTestDummy()
+    {
+        LoginPage loginPage = new LoginPage(driver, wait);
+        loginPage.NavigatePage();
+        loginPage.clickLoginButton();
+        Assert.assertEquals(loginPage.getRequiredMessage(), "Required");
+
     }
 }

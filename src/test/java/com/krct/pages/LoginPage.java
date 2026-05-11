@@ -18,20 +18,23 @@ public class LoginPage {
     private final By username = By.name("username");
     private final By password = By.name("password");
     private final By LoginButton = By.cssSelector("button[type='submit']");
-    private final By Dashboard = By.xpath("//h6[(text()='Dashboard')]");
-    private final By errorMessage = By.xpath("//p[contains(text(),'Invalid credentials')]");
-    public void enterUsername(String username) {
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
-        element.sendKeys(username);
+    private final By errorMessage = By.cssSelector(".oxd-alert-content-text");
+    private final By profileMenu = By.cssSelector(".oxd-userdropdown-name");
+    public final By logout = By.xpath("//a[text()='Logout']");
+    private final By requiredMessage = By.xpath("//span[text()='Required']");
+
+    public void enterUsername(String user) {
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(this.username));
+        element.sendKeys(user);
     }
 
-    public void enterPassword(String password) {
-        WebElement element = driver.findElement(By.name("password"));
-        element.sendKeys(password);
+    public void enterPassword(String pass) {
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(this.password));
+        element.sendKeys(pass);
     }
 
     public void clickLoginButton() {
-        driver.findElement(LoginButton).click();
+        wait.until(ExpectedConditions.elementToBeClickable(LoginButton)).click();
     }
 
     public void Login(String username, String password) {
@@ -44,10 +47,33 @@ public class LoginPage {
     }
 
     public boolean isUserLoggedIn() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(Dashboard)).isDisplayed();
+
+        return driver.getCurrentUrl().contains("dashboard");
     }
 
     public String isErrorMessageDisplayed() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage)).getText();
+    }
+
+    public void logoutButtonClick() {
+
+        WebElement menu =
+                wait.until(ExpectedConditions.visibilityOfElementLocated(profileMenu));
+
+        menu.click();
+
+        WebElement logoutButton = wait.until(ExpectedConditions.visibilityOfElementLocated(logout));
+
+        logoutButton.click();
+    }
+    public boolean isLoginPageDisplayed() {
+
+        return driver.getCurrentUrl()
+                .contains("login");
+    }
+    public String getRequiredMessage() {
+
+        return wait.until(
+                ExpectedConditions.visibilityOfElementLocated(requiredMessage)).getText();
     }
 }

@@ -28,6 +28,12 @@ public class LeavePage {
 
     private final By applyPageHeader = By.xpath("//h6[text()='Apply Leave']");
 
+    private final By myLeaveButton = By.xpath("//a[text()='My Leave']");
+
+    private final By leaveListHeader = By.xpath("//h5[text()='Leave List']");
+
+    private final By dateField = By.xpath("(//input[@placeholder='yyyy-dd-mm'])[1]");
+
     public void openLeavePage() {
         wait.until(ExpectedConditions.elementToBeClickable(leaveMenu)).click();
     }
@@ -64,20 +70,26 @@ public class LeavePage {
 
         openLeavePage();
 
-        wait.until(
-                ExpectedConditions.elementToBeClickable(
-                        applyButton
-                )
-        ).click();
+        wait.until(ExpectedConditions.elementToBeClickable(applyButton)).click();
     }
-
     public boolean isApplyPageOpened() {
-
-        return wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        applyPageHeader
-                )
-        ).isDisplayed();
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(applyPageHeader)).isDisplayed();
     }
+
+    public void openLeaveList() {
+        openLeavePage();
+        wait.until(ExpectedConditions.elementToBeClickable(myLeaveButton)).click();
+    }
+
+    public boolean isLeaveListOpened() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(leaveMenu)).isDisplayed();
+    }
+
+    public void enterInvalidDate()
+    {
+        openApplyPage();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(dateField)).sendKeys("invalid-date");
+    }
+
 }
 

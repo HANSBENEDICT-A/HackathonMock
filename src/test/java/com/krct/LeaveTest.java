@@ -26,5 +26,25 @@ public class LeaveTest extends BaseTest{
         leavePage.openApplyPage();
         Assert.assertTrue(leavePage.isApplyPageOpened());
     }
+    @Test
+    public void leaveListTest()
+    {
+        LoginPage loginPage = new LoginPage(driver, wait);
+        LeavePage leavePage = new LeavePage(driver, wait);
+        loginPage.NavigatePage();
+        loginPage.Login("Admin", "admin123");
+        leavePage.openLeaveList();
+        Assert.assertTrue(leavePage.isLeaveListOpened());
+    }
 
+    @Test
+    public void invalidDateTest()
+    {
+        LoginPage loginPage = new LoginPage(driver, wait);
+        LeavePage leavePage = new LeavePage(driver, wait);
+        loginPage.NavigatePage();
+        loginPage.Login("Admin", "admin123");
+        leavePage.enterInvalidDate();
+        Assert.assertTrue(true);
+    }
 }

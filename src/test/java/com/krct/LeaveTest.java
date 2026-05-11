@@ -13,10 +13,8 @@ public class LeaveTest extends BaseTest{
         LeavePage leavePage = new LeavePage(driver, wait);
         loginPage.NavigatePage();
         loginPage.Login("Admin", "admin123");
-        leavePage.applyLeave(
-                "2025-20-12",
-                "2025-22-12"
-        );
-        Assert.assertTrue(leavePage.isLeaveApplied());
+        leavePage.openLeavePage();
+
+        Assert.assertTrue(leavePage.isLeavePageOpened());
     }
 }

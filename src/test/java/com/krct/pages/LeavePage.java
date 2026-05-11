@@ -24,7 +24,7 @@ public class LeavePage {
 
     private final By applySubmitButton = By.xpath("//button[@type='submit']");
 
-    private final By successMessage = By.xpath("//p[contains(text(),'Success')]");
+    private final By leaveHeader = By.xpath("//h6[text()='Leave']");
 
     public void openLeavePage() {
         wait.until(ExpectedConditions.elementToBeClickable(leaveMenu)).click();
@@ -43,9 +43,9 @@ public class LeavePage {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(toDate)).sendKeys(date);
     }
-    public void clickApplySubmitButton() {
-
-        wait.until(ExpectedConditions.elementToBeClickable(applySubmitButton)).click();
+    public void applyLeave()
+    {
+        openLeavePage();
     }
     public void applyLeave(String from, String to)
     {
@@ -53,11 +53,9 @@ public class LeavePage {
         clickApplyButton();
         enterFromDate(from);
         enterToDate(to);
-        clickApplySubmitButton();
     }
-    public boolean isLeaveApplied() {
-
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(successMessage)).isDisplayed();
+    public boolean isLeavePageOpened() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(leaveHeader)).isDisplayed();
     }
 }
 

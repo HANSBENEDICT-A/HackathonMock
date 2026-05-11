@@ -14,7 +14,6 @@ public class LoginPage {
         this.wait = wait;
     }
 
-
     private final By username = By.name("username");
     private final By password = By.name("password");
     private final By LoginButton = By.cssSelector("button[type='submit']");

@@ -9,7 +9,7 @@ import javax.swing.*;
 
 public class AdminTest extends BaseTest {
         @Test
-        public void adminPageTest()
+        public void adminPageTest() //for safer side to check whether the admin page works properly
         {
             LoginPage loginPage = new LoginPage(driver, wait);
 

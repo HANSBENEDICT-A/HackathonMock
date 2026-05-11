@@ -49,7 +49,7 @@ public class LoginTest extends BaseTest {
     public void loginTestDummy()
     {
         LoginPage loginPage = new LoginPage(driver, wait);
-        loginPage.NavigatePage();
+        driver.get(config.getUrl());
         loginPage.clickLoginButton();
         Assert.assertEquals(loginPage.getRequiredMessage(), "Required");
 

@@ -2,6 +2,7 @@ package com.krct;
 
 import com.krct.pages.EmployeePage;
 import com.krct.pages.LoginPage;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -31,6 +32,19 @@ public class EmployeeTest extends BaseTest {
         loginPage.Login("Admin", "admin123");
         employeePage.searchEmployee("John");
         Assert.assertTrue(employeePage.isEmployeeFound()
+        );
+    }
+    @Test
+    public void openEmployeeRecordTest()
+    {
+        LoginPage loginPage = new LoginPage(driver, wait);
+        EmployeePage employeePage = new EmployeePage(driver, wait);
+        loginPage.NavigatePage();
+        loginPage.Login("Admin", "admin123");
+        employeePage.searchEmployee("John");
+        employeePage.openEmployeeRecord();
+        Assert.assertTrue(
+                employeePage.isEmployeeAdded()
         );
     }
 }

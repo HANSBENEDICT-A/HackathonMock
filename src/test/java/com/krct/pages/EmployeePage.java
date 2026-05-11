@@ -24,6 +24,8 @@ public class EmployeePage {
     private final By employeeSearchBox = By.xpath("//input[contains(@placeholder,'Type for hints...')]");
     private final By searchButton = By.cssSelector("button[type='submit']");
     private final By employeeNameResult = By.xpath("//div[@role='rowgroup']");
+    private final By employeeRow = By.xpath("(//div[@class='oxd-table-card'])[1]");
+    private final By personalDetailsName = By.name("firstName");
 
 
     public void openPIM() {
@@ -78,5 +80,12 @@ public class EmployeePage {
     public boolean isEmployeeFound() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(employeeNameResult)).isDisplayed();
     }
-    
+    public void openEmployeeRecord() {
+
+        wait.until(ExpectedConditions.elementToBeClickable(employeeRow)).click();
+    }
+    public String getEmployeeName() {
+
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(personalDetailsName)).getAttribute("value");
+    }
 }

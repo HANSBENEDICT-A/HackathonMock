@@ -20,7 +20,6 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "loginData")
-
     public void LoginTestuser(String username, String password) {
         LoginPage loginPage = new LoginPage(driver, wait);
         loginPage.NavigatePage();

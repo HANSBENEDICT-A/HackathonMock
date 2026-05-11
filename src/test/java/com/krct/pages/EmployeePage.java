@@ -1,6 +1,8 @@
 package com.krct.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class EmployeePage {
@@ -10,5 +12,46 @@ public class EmployeePage {
         this.driver = driver;
         this.wait = wait;
     }
-    
+    private final By personal = By.xpath("//span[text()='PIM']");
+    private final By addButton = By.xpath("//a[text()='Add Employee']");
+    private final By firstName = By.name("firstName");
+    private final By middleName = By.name("middleName");
+    private final By lastName = By.name("lastName");
+    private final By employeeId = By.xpath("//input[contains(@class,'oxd-input oxd-input--active')]");
+    private final By submitButton = By.cssSelector("button[type='submit']");
+    private final By personalDetails = By.xpath("//h6[text()='Personal Details']");
+
+
+    public void openPIM() {
+        wait.until(ExpectedConditions.elementToBeClickable(personal)).click();
+    }
+
+    public void clickAddButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(addButton)).click();
+    }
+
+    public void enterFirstName(String fname) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(firstName)).sendKeys(fname);
+    }
+    public void enterMiddleName(String mname) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(middleName)).sendKeys(mname);
+    }
+    public void enterLastName(String lname) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(lastName)).sendKeys(lname);
+    }
+    public void enterEmployeeId(String empId) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(employeeId)).sendKeys(empId);
+    }
+    public void clickSaveButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(submitButton)).click();
+    }
+    public void addEmployee(String fname, String mname, String lname, String empId) {
+        openPIM();
+        clickAddButton();
+        enterFirstName(fname);
+        enterMiddleName(mname);
+        enterLastName(lname);
+        enterEmployeeId(empId);
+        clickSaveButton();
+    }
 }

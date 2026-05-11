@@ -46,7 +46,6 @@ public class LoginPage {
     }
 
     public boolean isUserLoggedIn() {
-
         return driver.getCurrentUrl().contains("dashboard");
     }
 
@@ -55,23 +54,17 @@ public class LoginPage {
     }
 
     public void logoutButtonClick() {
-
         WebElement menu =
                 wait.until(ExpectedConditions.visibilityOfElementLocated(profileMenu));
-
         menu.click();
-
         WebElement logoutButton = wait.until(ExpectedConditions.visibilityOfElementLocated(logout));
-
         logoutButton.click();
     }
     public boolean isLoginPageDisplayed() {
-
         return driver.getCurrentUrl()
                 .contains("login");
     }
     public String getRequiredMessage() {
-
         return wait.until(
                 ExpectedConditions.visibilityOfElementLocated(requiredMessage)).getText();
     }

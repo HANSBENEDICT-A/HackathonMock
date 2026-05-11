@@ -1,6 +1,5 @@
 package com.krct;
 
-import com.krct.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

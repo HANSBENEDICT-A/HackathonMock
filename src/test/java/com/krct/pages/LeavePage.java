@@ -15,25 +15,13 @@ public class LeavePage {
         this.wait = wait;
     }
     private final By leaveMenu = By.xpath("//span[text()='Leave']");
-
     private final By applyButton = By.xpath("//a[text()='Apply']");
-
     private final By fromDate = By.xpath("(//input[@placeholder='yyyy-dd-mm'])[1]");
-
     private final By toDate = By.xpath("(//input[@placeholder='yyyy-dd-mm'])[2]");
-
-    private final By applySubmitButton = By.xpath("//button[@type='submit']");
-
     private final By leaveHeader = By.xpath("//h6[text()='Leave']");
-
     private final By applyPageHeader = By.xpath("//h6[text()='Apply Leave']");
-
     private final By myLeaveButton = By.xpath("//a[text()='My Leave']");
-
-    private final By leaveListHeader = By.xpath("//h5[text()='Leave List']");
-
     private final By dateField = By.xpath("(//input[@placeholder='yyyy-dd-mm'])[1]");
-
     public void openLeavePage() {
         wait.until(ExpectedConditions.elementToBeClickable(leaveMenu)).click();
     }
@@ -50,10 +38,6 @@ public class LeavePage {
     public void enterToDate(String date) {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(toDate)).sendKeys(date);
-    }
-    public void applyLeave()
-    {
-        openLeavePage();
     }
     public void applyLeave(String from, String to)
     {

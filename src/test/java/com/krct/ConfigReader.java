@@ -41,16 +41,4 @@ public class ConfigReader {
 
         return properties.getProperty("password");
     }
-
-    public String getBrowser() {
-
-        return properties.getProperty("browser");
-    }
-
-    public int getTimeout() {
-
-        return Integer.parseInt(
-                properties.getProperty("timeout")
-        );
-    }
 }

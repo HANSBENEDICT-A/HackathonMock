@@ -26,6 +26,8 @@ public class LeavePage {
 
     private final By leaveHeader = By.xpath("//h6[text()='Leave']");
 
+    private final By applyPageHeader = By.xpath("//h6[text()='Apply Leave']");
+
     public void openLeavePage() {
         wait.until(ExpectedConditions.elementToBeClickable(leaveMenu)).click();
     }
@@ -56,6 +58,26 @@ public class LeavePage {
     }
     public boolean isLeavePageOpened() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(leaveHeader)).isDisplayed();
+    }
+
+    public void openApplyPage() {
+
+        openLeavePage();
+
+        wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        applyButton
+                )
+        ).click();
+    }
+
+    public boolean isApplyPageOpened() {
+
+        return wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        applyPageHeader
+                )
+        ).isDisplayed();
     }
 }
 

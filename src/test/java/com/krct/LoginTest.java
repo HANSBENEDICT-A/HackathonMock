@@ -39,8 +39,8 @@ public class LoginTest extends BaseTest {
     public void logoutTest()
     {
         LoginPage loginPage = new LoginPage(driver, wait);
-        loginPage.NavigatePage();
-        loginPage.Login("Admin", "admin123");
+        driver.get(config.getUrl());
+        loginPage.Login(config.getUsername(), config.getPassword());
         loginPage.logoutButtonClick();
         Assert.assertTrue(loginPage.isLoginPageDisplayed());
     }

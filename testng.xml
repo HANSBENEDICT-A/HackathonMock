@@ -32,4 +32,8 @@
         </classes>
     </test>
 
+    <listeners>
+        <listener class-name="com.krct.listeners.TestListener"/>
+    </listeners>
+
 </suite>

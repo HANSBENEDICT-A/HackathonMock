@@ -1,7 +1,6 @@
 package com.krct.listeners;
 
 import com.krct.BaseTest;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.io.FileHandler;

@@ -7,8 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage {
-    private final WebDriver driver;
-    private final WebDriverWait wait;
+    protected final WebDriver driver;
+    protected final WebDriverWait wait;
     public LoginPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
@@ -18,9 +18,10 @@ public class LoginPage {
     private final By username = By.name("username");
     private final By password = By.name("password");
     private final By LoginButton = By.cssSelector("button[type='submit']");
-    private final By FlashMessageField = By.cssSelector("div#flash");
+    private final By Dashboard = By.xpath("//h6[(text()='Dashboard')]");
+    private final By errorMessage = By.xpath("//p[contains(text(),'Invalid credentials')]");
     public void enterUsername(String username) {
-        WebElement element = driver.findElement(By.name("username"));
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("username")));
         element.sendKeys(username);
     }
 
@@ -33,18 +34,20 @@ public class LoginPage {
         driver.findElement(LoginButton).click();
     }
 
-    public String enterFlashMessage() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(FlashMessageField));
-        return driver.findElement(FlashMessageField).getText();
-    }
-
-    public String Login(){
-        enterUsername("Admin");
-        enterPassword("admin123");
+    public void Login(String username, String password) {
+        enterUsername(username);
+        enterPassword(password);
         clickLoginButton();
-        return enterFlashMessage();
     }
     public void NavigatePage(){
         driver.navigate().to("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    }
+
+    public boolean isUserLoggedIn() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(Dashboard)).isDisplayed();
+    }
+
+    public String isErrorMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage)).getText();
     }
 }

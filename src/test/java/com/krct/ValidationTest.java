@@ -4,7 +4,7 @@ import com.krct.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Validation extends BaseTest{
+public class ValidationTest extends BaseTest{
     @Test
     public void emptyFieldValidationTest()
     {

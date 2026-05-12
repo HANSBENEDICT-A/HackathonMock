@@ -6,6 +6,7 @@ import com.krct.BaseTest;
 import com.krct.reports.ExtentManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -14,8 +15,7 @@ import org.testng.ITestResult;
 import java.io.File;
 import java.io.IOException;
 
-public class TestListener extends BaseTest
-        implements ITestListener {
+public class TestListener implements ITestListener {
 
     ExtentReports extent = ExtentManager.getReport();
 
@@ -24,12 +24,12 @@ public class TestListener extends BaseTest
     @Override
     public void onTestStart(ITestResult result)
     {
-        test = extent.createTest(result.getName());
+        test = extent.createTest(result.getName()
+        );
     }
 
     @Override
-    public void onTestSuccess(
-            ITestResult result)
+    public void onTestSuccess(ITestResult result)
     {
         test.pass("Test Passed");
     }
@@ -38,6 +38,9 @@ public class TestListener extends BaseTest
     public void onTestFailure(ITestResult result)
     {
         test.fail("Test Failed");
+        Object testClass = result.getInstance();
+
+        WebDriver driver = ((BaseTest) testClass).driver;
 
         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
@@ -55,5 +58,6 @@ public class TestListener extends BaseTest
     public void onFinish(ITestContext context)
     {
         extent.flush();
+        System.out.println("Extent Report Generated");
     }
 }

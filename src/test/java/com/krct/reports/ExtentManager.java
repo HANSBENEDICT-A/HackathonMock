@@ -11,10 +11,11 @@ public class ExtentManager {
     {
         if (extent == null)
         {
-            ExtentSparkReporter reporter =
-                    new ExtentSparkReporter(
-                            "ExtentReport.html"
-                    );
+            ExtentSparkReporter reporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/ExtentReport.html");
+
+            reporter.config().setReportName("OrangeHRM Automation Report");
+
+            reporter.config().setDocumentTitle("Test Execution Report");
 
             extent = new ExtentReports();
 

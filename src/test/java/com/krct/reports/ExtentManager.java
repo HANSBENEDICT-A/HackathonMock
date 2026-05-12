@@ -12,9 +12,7 @@ public class ExtentManager {
         if (extent == null)
         {
             ExtentSparkReporter reporter =
-                    new ExtentSparkReporter(
-                            "ExtentReport.html"
-                    );
+                    new ExtentSparkReporter("ExtentReport.html");
 
             extent = new ExtentReports();
 

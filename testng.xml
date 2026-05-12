@@ -2,6 +2,11 @@
 
 <suite name="OrangeHRM Suite">
 
+    <listeners>
+        <listener class-name=
+                          "com.krct.listeners.TestListener"/>
+    </listeners>
+
     <test name="Login Tests">
         <classes>
             <class name="com.krct.LoginTest"/>
@@ -31,9 +36,5 @@
             <class name="com.krct.ValidationTest"/>
         </classes>
     </test>
-
-    <listeners>
-        <listener class-name="com.krct.listeners.TestListener"/>
-    </listeners>
 
 </suite>
